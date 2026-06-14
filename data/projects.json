@@ -1,17 +1,6 @@
 {
   "projects": [
-    {
-      "id": "project-1",
-      "name": "Project Name",
-      "description": "Brief description of what your project does and why you built it.",
-      "icon": "fas fa-mobile-alt",
-      "category": "Android App",
-      "tags": ["Kotlin", "Android"],
-      "links": {
-        "github": "https://github.com/yourusername/project-name",
-        "live": "https://play.google.com/store/apps/details?id=com.yourapp"
-      }
-    },
+
     {
       "id": "project-2",
       "name": "Resume Checker AI",
@@ -23,17 +12,7 @@
         "github": "https://github.com/j33fo/resume-checker-ai",
         "live": "https://resume-checker-ai-ten.vercel.app/"
       }
-    },
-    {
-      "id": "project-3",
-      "name": "Utility Tool",
-      "description": "A command-line utility built for productivity.",
-      "icon": "fas fa-tools",
-      "category": "CLI Tool",
-      "tags": ["Python", "CLI"],
-      "links": {
-        "github": "https://github.com/yourusername/utility-tool"
-      }
     }
+   
   ]
 }
