@@ -17,7 +17,7 @@
       "id": "project-2",
       "name": "StringDex GO: Search Strings for Pokémon GO",
       "description": "A web application that allows users to search for Pokémon GO strings and related",
-      "icon": "fas fa-phone",
+      "icon": "fas fa-mobile-alt",
       "category": "Mobile App",
       "tags": ["Gradle", "Java", "Android Studio"], 
       "links": {
