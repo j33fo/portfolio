@@ -2,7 +2,7 @@
   "projects": [
 
     {
-      "id": "project-2",
+      "id": "project-1",
       "name": "Resume Checker AI",
       "description": "AI-driven platform designed to help job seekers optimize their resumes.",
       "icon": "fas fa-globe",
@@ -12,7 +12,18 @@
         "github": "https://github.com/j33fo/resume-checker-ai",
         "live": "https://resume-checker-ai-ten.vercel.app/"
       }
+    },
+  {
+      "id": "project-2",
+      "name": "StringDex GO: Search Strings for Pokémon GO",
+      "description": "A web application that allows users to search for Pokémon GO strings and related",
+      "icon": "fas fa-phone",
+      "category": "Mobile App",
+      "tags": ["Gradle", "Java", "Android Studio"], 
+      "links": {
+          "github": "#",
+          "live": "https://www.amazon.co.uk/dp/B0H576SBYB/ref=sr_1_1?s=mobile-apps&sr=1-1"
+      }
     }
-   
   ]
 }
