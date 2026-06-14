@@ -24,6 +24,18 @@
           "github": "#",
           "live": "https://www.amazon.co.uk/dp/B0H576SBYB/ref=sr_1_1?s=mobile-apps&sr=1-1"
       }
+    },
+    {
+      "id": "project-3",
+      "name": "AI Debt Payoff",
+      "description": "Manage accounts, track spending, and get practical recommendations in one place.",
+      "icon": "fas fa-laptop-code",
+      "category": "Web App",
+      "tags": ["HTML", "CSS", "JavaScript", "React", "Node.js", "MongoDB"],
+      "links": {
+        "github": "#",
+        "live": "https://ai-debt-payoff.vercel.app/"
+      }
     }
   ]
 }
