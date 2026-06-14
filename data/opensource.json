@@ -2,19 +2,27 @@
   "opensource": [
     {
       "id": "os-1",
-      "name": "Useful Library",
-      "description": "A helpful library that solves X problem. Used by Y projects.",
-      "language": "Python",
-      "stars": 42,
-      "github": "https://github.com/yourusername/useful-library"
+      "name": "Useful Libraryof AI prompts",
+      "description": "A helpful library that solves prompting problem of almost all AI platforms.",
+      "language": "TXT",
+      "stars": "140k",
+      "github": "https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools"
     },
     {
       "id": "os-2",
-      "name": "CLI Tool",
-      "description": "Command-line tool for automating common tasks.",
-      "language": "Go",
-      "stars": 18,
-      "github": "https://github.com/yourusername/cli-tool"
+      "name": "Awesome Database Design",
+      "description": "A curated collection of resources, tutorials, tools, and best practices for designing efficient and scalable databases.",
+      "language": "Bookmarks",
+      "stars": "795",
+      "github": "https://github.com/sujeet-agrahari/awesome-database-design"
+    },
+    {
+      "id": "os-3",
+      "name": "Computer Science & Programming Resources",
+      "description": "Path to a free self-taught education in Computer Science!",
+      "language": "Markdown",
+      "stars": "205k",
+      "github": "https://github.com/sujeet-agrahari/computer-science-programming-resources"
     }
   ]
 }
