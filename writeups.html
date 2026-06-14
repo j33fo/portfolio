@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writeups & Articles | Gabriel Tampu</title>
+    <meta name="description" content="Read Gabriel's technical articles and deep dives.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1f2937",
+                        secondary: "#111827",
+                        accent: "#10b981",
+                        dark: "#030712",
+                        light: "#f3f4f6"
+                    },
+                    fontFamily: {
+                        'mono': ['JetBrains Mono', 'monospace'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans bg-dark text-white min-h-screen">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-secondary/80 backdrop-blur-md border-b border-gray-800">
+        <nav class="container mx-auto px-4 py-4 max-w-6xl">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
+                        <i class="fas fa-mobile-alt text-sm"></i>
+                    </div>
+                    <span class="font-bold text-lg">GabrielT<span class="text-accent">.</span></span>
+                </a>
+                <ul class="hidden md:flex space-x-6 text-sm">
+                    <li><a href="index.html" class="hover:text-accent transition">Home</a></li>
+                    <li><a href="projects.html" class="hover:text-accent transition">Projects</a></li>
+                    <li><a href="labs.html" class="hover:text-accent transition">Labs</a></li>
+                    <li><a href="opensource.html" class="hover:text-accent transition">Open Source</a></li>
+                    <li><a href="writeups.html" class="text-accent">Writeups</a></li>
+                    <li><a href="status.html" class="hover:text-accent transition">Status</a></li>
+                </ul>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            <div id="mobile-menu" class="md:hidden mt-4 hidden pb-4 space-y-3 text-sm">
+                <a href="index.html" class="block hover:text-accent transition">Home</a>
+                <a href="projects.html" class="block hover:text-accent transition">Projects</a>
+                <a href="labs.html" class="block hover:text-accent transition">Labs</a>
+                <a href="opensource.html" class="block hover:text-accent transition">Open Source</a>
+                <a href="writeups.html" class="block text-accent">Writeups</a>
+                <a href="status.html" class="block hover:text-accent transition">Status</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="py-16 md:py-20 bg-primary border-b border-gray-800">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <a href="index.html" class="text-accent hover:text-green-400 transition flex items-center gap-2 mb-4">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Writeups & Articles</h1>
+            <p class="text-gray-400">Technical deep dives, learnings, and project retrospectives</p>
+        </div>
+    </section>
+
+    <!-- Articles -->
+    <section class="py-16 md:py-20">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div id="writeups-container" class="space-y-6">
+                <!-- Articles will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary border-t border-gray-800 py-8 mt-20">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-sm">
+                <p>&copy; 2026 Gabriel Tampu. <span class="text-accent">Made with AI & curiosity.</span></p>
+                <div class="flex gap-6">
+                    <a href="https://github.com/j33fo" target="_blank" class="hover:text-accent transition">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/pages.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "labs": [
+    {
+      "id": "lab-1",
+      "title": "Local AI Project",
+      "description": "Experimenting with locally hosted LLMs using Ollama.",
+      "icon": "fas fa-brain",
+      "status": "in_progress",
+      "tags": ["#llm", "#local-deployment", "#ai"]
+    },
+    {
+      "id": "lab-2",
+      "title": "Cluster Setup & Orchestration",
+      "description": "Building and managing a local Kubernetes cluster for containerized applications.",
+      "icon": "fas fa-server",
+      "status": "active",
+      "tags": ["#kubernetes", "#infrastructure", "#docker"]
+    },
+    {
+      "id": "lab-3",
+      "title": "Real-time Data Pipeline",
+      "description": "Exploring streaming data architecture with custom processing.",
+      "icon": "fas fa-stream",
+      "status": "in_progress",
+      "tags": ["#data", "#streaming", "#architecture"]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "status": {
+    "current": {
+      "title": "Currently Working On",
+      "description": "Building a Kubernetes-based AI platform for local LLM inference with custom fine-tuning capabilities. Using Docker, Python, and FastAPI."
+    },
+    "next": {
+      "title": "Up Next",
+      "description": "Exploring RAG (Retrieval-Augmented Generation) patterns. Planning to build a personal knowledge base system that can run offline."
+    },
+    "updates": [
+      {
+        "project": "Project X",
+        "update": "Released v2.0 with new features",
+        "date": "2026-06-14"
+      },
+      {
+        "project": "AI Lab",
+        "update": "Achieved 92% accuracy on custom dataset",
+        "date": "2026-06-12"
+      },
+      {
+        "project": "Infrastructure",
+        "update": "Migrated cluster to new hardware",
+        "date": "2026-06-08"
+      }
+    ]
+  }
+}

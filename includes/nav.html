@@ -1,0 +1,32 @@
+<!-- Dynamic Navigation - Include this on every page -->
+<header class="sticky top-0 z-50 bg-secondary/80 backdrop-blur-md border-b border-gray-800">
+    <nav class="container mx-auto px-4 py-4 max-w-6xl">
+        <div class="flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
+                    <i class="fas fa-mobile-alt text-sm"></i>
+                </div>
+                <span class="font-bold text-lg">GabrielT<span class="text-accent">.</span></span>
+            </a>
+            <ul class="hidden md:flex space-x-6 text-sm">
+                <li><a href="index.html" class="hover:text-accent transition">Home</a></li>
+                <li><a href="projects.html" class="hover:text-accent transition">Projects</a></li>
+                <li><a href="labs.html" class="hover:text-accent transition">Labs</a></li>
+                <li><a href="opensource.html" class="hover:text-accent transition">Open Source</a></li>
+                <li><a href="writeups.html" class="hover:text-accent transition">Writeups</a></li>
+                <li><a href="status.html" class="hover:text-accent transition">Status</a></li>
+            </ul>
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <div id="mobile-menu" class="md:hidden mt-4 hidden pb-4 space-y-3 text-sm">
+            <a href="index.html" class="block hover:text-accent transition">Home</a>
+            <a href="projects.html" class="block hover:text-accent transition">Projects</a>
+            <a href="labs.html" class="block hover:text-accent transition">Labs</a>
+            <a href="opensource.html" class="block hover:text-accent transition">Open Source</a>
+            <a href="writeups.html" class="block hover:text-accent transition">Writeups</a>
+            <a href="status.html" class="block hover:text-accent transition">Status</a>
+        </div>
+    </nav>
+</header>

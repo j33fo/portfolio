@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel Tampu | Tech Projects & Experiments</title>
+    <meta name="description" content="Gabriel's showcase of tech projects: apps, websites, web apps, AI experiments, and local infrastructure work.">
+    <meta name="keywords" content="projects, apps, web development, AI, tech stack, open source, experiments">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1f2937",
+                        secondary: "#111827",
+                        accent: "#10b981",
+                        dark: "#030712",
+                        light: "#f3f4f6"
+                    },
+                    fontFamily: {
+                        'mono': ['JetBrains Mono', 'monospace'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'gradient': 'gradient 8s ease infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' }
+                        },
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-secondary/80 backdrop-blur-md border-b border-gray-800">
+        <nav class="container mx-auto px-4 py-4 max-w-6xl">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
+                        <i class="fas fa-mobile-alt text-sm"></i>
+                    </div>
+                    <span class="font-bold text-lg">GabrielT<span class="text-accent">.</span></span>
+                </div>
+                <ul class="hidden md:flex space-x-6 text-sm">
+                    <li><a href="#projects" class="hover:text-accent transition">Projects</a></li>
+                    <li><a href="#labs" class="hover:text-accent transition">Labs</a></li>
+                    <li><a href="#open-source" class="hover:text-accent transition">Open Source</a></li>
+                    <li><a href="#writeups" class="hover:text-accent transition">Writeups</a></li>
+                    <li><a href="#tech-stack" class="hover:text-accent transition">Tech Stack</a></li>
+                    <li><a href="#status" class="hover:text-accent transition">Status</a></li>
+                </ul>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            <div id="mobile-menu" class="md:hidden mt-4 hidden pb-4 space-y-3 text-sm">
+                <a href="#projects" class="block hover:text-accent transition">Projects</a>
+                <a href="#labs" class="block hover:text-accent transition">Labs</a>
+                <a href="#open-source" class="block hover:text-accent transition">Open Source</a>
+                <a href="#writeups" class="block hover:text-accent transition">Writeups</a>
+                <a href="#tech-stack" class="block hover:text-accent transition">Tech Stack</a>
+                <a href="#status" class="block hover:text-accent transition">Status</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg py-20 md:py-32">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="max-w-3xl">
+                <div class="inline-block mb-4 px-4 py-2 bg-accent/10 rounded-full border border-accent/30 text-sm">
+                    <i class="fas fa-flask text-accent mr-2"></i>Projects & Experiments
+                </div>
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                    Building & Experimenting with Tech
+                </h1>
+                <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                    A showcase of my latest work: Android apps, web projects, AI experiments, and infrastructure explorations. Here you'll find what I'm building and learning.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#projects" class="btn-play-store px-8 py-3 rounded-lg font-semibold text-white flex items-center gap-2 hover:no-underline">
+                        <i class="fas fa-arrow-down"></i> View Projects
+                    </a>
+                    <a href="#status" class="px-8 py-3 rounded-lg font-semibold border border-accent text-accent hover:bg-accent/10 transition">
+                        What's New
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 md:py-32 bg-secondary">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="flex justify-between items-center mb-16">
+                <div>
+                    <h2 class="section-title text-4xl font-bold mb-4">Projects</h2>
+                    <p class="text-gray-400">Android apps, websites, web apps, and more</p>
+                </div>
+                <a href="projects.html" class="text-accent hover:text-green-400 transition flex items-center gap-2 whitespace-nowrap">
+                    See All <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div id="projects-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Projects will be loaded from data/projects.json -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Labs/Experiments Section -->
+    <section id="labs" class="py-20 md:py-32 bg-primary">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="flex justify-between items-center mb-16">
+                <div>
+                    <h2 class="section-title text-4xl font-bold mb-4">Labs & Experiments</h2>
+                    <p class="text-gray-400">Trying out new tech, local AI, cluster setups, and early-stage ideas</p>
+                </div>
+                <a href="labs.html" class="text-accent hover:text-green-400 transition flex items-center gap-2 whitespace-nowrap">
+                    See All <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div id="labs-container" class="grid md:grid-cols-2 gap-8">
+                <!-- Labs will be loaded from data/labs.json -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Source Section -->
+    <section id="open-source" class="py-20 md:py-32 bg-secondary">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="flex justify-between items-center mb-16">
+                <div>
+                    <h2 class="section-title text-4xl font-bold mb-4">Open Source</h2>
+                    <p class="text-gray-400">Tools, libraries, and projects shared with the community</p>
+                </div>
+                <a href="opensource.html" class="text-accent hover:text-green-400 transition flex items-center gap-2 whitespace-nowrap">
+                    See All <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div id="opensource-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Open source projects will be loaded from data/opensource.json -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Writeups & Articles Section -->
+    <section id="writeups" class="py-20 md:py-32 bg-primary">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="flex justify-between items-center mb-16">
+                <div>
+                    <h2 class="section-title text-4xl font-bold mb-4">Writeups & Articles</h2>
+                    <p class="text-gray-400">Technical deep dives, learnings, and project retrospectives</p>
+                </div>
+                <a href="writeups.html" class="text-accent hover:text-green-400 transition flex items-center gap-2 whitespace-nowrap">
+                    See All <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div id="writeups-container" class="space-y-6 max-w-3xl">
+                <!-- Writeups will be loaded from data/writeups.json -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="tech-stack" class="py-20 md:py-32 bg-secondary">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="mb-16">
+                <h2 class="section-title text-4xl font-bold mb-4">Tech Stack</h2>
+                <p class="text-gray-400">Tools, languages, and technologies I use and explore</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-primary/50 border border-accent/20 rounded-lg p-6">
+                    <h3 class="font-bold mb-4 flex items-center gap-2">
+                        <i class="fas fa-mobile-alt text-accent"></i> Mobile
+                    </h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>• Kotlin / Java</li>
+                        <li>• Android SDK</li>
+                        <li>• Firebase</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-primary/50 border border-accent/20 rounded-lg p-6">
+                    <h3 class="font-bold mb-4 flex items-center gap-2">
+                        <i class="fas fa-globe text-accent"></i> Web
+                    </h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>• React / Next.js</li>
+                        <li>• Node.js</li>
+                        <li>• Tailwind CSS</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-primary/50 border border-accent/20 rounded-lg p-6">
+                    <h3 class="font-bold mb-4 flex items-center gap-2">
+                        <i class="fas fa-brain text-accent"></i> AI & ML
+                    </h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>• LLMs (local & API)</li>
+                        <li>• Python</li>
+                        <li>• Ollama / LM Studio</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-primary/50 border border-accent/20 rounded-lg p-6">
+                    <h3 class="font-bold mb-4 flex items-center gap-2">
+                        <i class="fas fa-server text-accent"></i> Infrastructure
+                    </h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>• Docker</li>
+                        <li>• Kubernetes</li>
+                        <li>• Linux</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-primary/50 border border-accent/20 rounded-lg p-6">
+                    <h3 class="font-bold mb-4 flex items-center gap-2">
+                        <i class="fas fa-database text-accent"></i> Databases
+                    </h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>• PostgreSQL</li>
+                        <li>• MongoDB</li>
+                        <li>• Redis</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-primary/50 border border-accent/20 rounded-lg p-6">
+                    <h3 class="font-bold mb-4 flex items-center gap-2">
+                        <i class="fas fa-wrench text-accent"></i> Tools
+                    </h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>• Git</li>
+                        <li>• VS Code</li>
+                        <li>• Terminal / Linux</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Status / What's New Section -->
+    <section id="status" class="py-20 md:py-32 bg-primary">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div class="flex justify-between items-center mb-16">
+                <div>
+                    <h2 class="section-title text-4xl font-bold mb-4">What's New</h2>
+                    <p class="text-gray-400">Current projects, updates, and what I'm working on</p>
+                </div>
+                <a href="status.html" class="text-accent hover:text-green-400 transition flex items-center gap-2 whitespace-nowrap">
+                    See Full <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div id="status-container" class="space-y-6">
+                <!-- Status will be loaded from data/status.json -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary border-t border-gray-800 py-8">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-sm">
+                <p>&copy; 2026 Gabriel T <span class="text-accent">Made with AI & curiosity.</span></p>
+                <div class="flex gap-6">
+                    <a href="https://github.com/j33fo" target="_blank" class="hover:text-accent transition">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/content.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

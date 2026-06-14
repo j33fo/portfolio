@@ -1,0 +1,31 @@
+{
+  "writeups": [
+    {
+      "id": "article-1",
+      "title": "Setting Up Local Kubernetes",
+      "date": "2026-06-14",
+      "readTime": 8,
+      "summary": "A comprehensive guide to setting up a Kubernetes cluster locally with some learnings along the way.",
+      "tags": ["#kubernetes", "#infrastructure", "#tutorial"],
+      "link": "#"
+    },
+    {
+      "id": "article-2",
+      "title": "Building Android Apps with AI Assistance",
+      "date": "2026-06-10",
+      "readTime": 5,
+      "summary": "How I use AI tools to streamline Android development workflow and improve productivity.",
+      "tags": ["#android", "#ai", "#development"],
+      "link": "#"
+    },
+    {
+      "id": "article-3",
+      "title": "Lessons Learned: Running LLMs Locally",
+      "date": "2026-06-05",
+      "readTime": 10,
+      "summary": "Technical deep dive into the challenges and solutions for hosting language models on consumer hardware.",
+      "tags": ["#llm", "#ai", "#infrastructure"],
+      "link": "#"
+    }
+  ]
+}

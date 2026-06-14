@@ -1,0 +1,118 @@
+/* ============================================
+   Main Styles
+   ============================================ */
+
+body {
+    background-color: #030712;
+    color: #f3f4f6;
+}
+
+/* ============================================
+   Gradient Background
+   ============================================ */
+
+.gradient-bg {
+    background: linear-gradient(135deg, #030712 0%, #1f2937 50%, #034e3a 100%);
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+}
+
+@keyframes gradient {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* ============================================
+   Cards & Components
+   ============================================ */
+
+.app-card {
+    background: rgba(31, 41, 55, 0.6);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.app-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(16, 185, 129, 0.5);
+    box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1);
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+
+.btn-play-store {
+    background: linear-gradient(135deg, #10b981, #059669);
+    transition: all 0.3s ease;
+}
+
+.btn-play-store:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+}
+
+/* ============================================
+   Blog Posts
+   ============================================ */
+
+.blog-post {
+    background: rgba(31, 41, 55, 0.4);
+    border-left: 4px solid #10b981;
+    transition: all 0.3s ease;
+}
+
+.blog-post:hover {
+    background: rgba(31, 41, 55, 0.6);
+    transform: translateX(4px);
+}
+
+/* ============================================
+   Section Titles
+   ============================================ */
+
+.section-title {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 12px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, #10b981, transparent);
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+
+header {
+    background-color: rgba(17, 24, 39, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #1f2937;
+}
+
+header a {
+    text-decoration: none;
+    color: #f3f4f6;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+}
