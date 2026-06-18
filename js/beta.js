@@ -39,7 +39,7 @@ document.getElementById('beta-form').addEventListener('submit', async (e) => {
     
     try {
         // Replace with your Google Apps Script Web App URL
-        const scriptUrl = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbw0u4rRvfRp9SkWu5-6QVBKDF8EN7Wla3sNP8TZbMGa8B0hPr9XEwIfWpXSX0PiQzfU/exec';
         
         const response = await fetch(scriptUrl, {
             method: 'POST',
