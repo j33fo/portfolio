@@ -1,31 +1,11 @@
-// ============================================
-// Pages Content Loader
-// Loads JSON data and renders on individual pages
-// ============================================
-
-async function loadJSON(filePath) {
-    try {
-        const response = await fetch(filePath);
-        if (!response.ok) throw new Error(`Failed to load ${filePath}`);
-        return await response.json();
-    } catch (error) {
-        console.error('Error loading JSON:', error);
-        return null;
-    }
-}
-
-// ============================================
-// Render Projects Page
-// ============================================
-
 async function renderProjectsPage() {
     const container = document.getElementById('projects-container');
     if (!container) return;
 
-    const data = await loadJSON('data/projects.json');
-    if (!data || !data.projects) return;
+    const projects = window.PortfolioData ? await window.PortfolioData.loadProjects() : [];
+    if (!projects.length) return;
 
-    container.innerHTML = data.projects.map(project => `
+    container.innerHTML = projects.map(project => `
         <div class="app-card p-6 rounded-lg">
             <div class="flex justify-between items-start mb-4">
                 <div class="text-3xl text-accent">
@@ -50,18 +30,14 @@ async function renderProjectsPage() {
     `).join('');
 }
 
-// ============================================
-// Render Labs Page
-// ============================================
-
 async function renderLabsPage() {
     const container = document.getElementById('labs-container');
     if (!container) return;
 
-    const data = await loadJSON('data/labs.json');
-    if (!data || !data.labs) return;
+    const labs = window.PortfolioData ? await window.PortfolioData.loadLabs() : [];
+    if (!labs.length) return;
 
-    container.innerHTML = data.labs.map(lab => `
+    container.innerHTML = labs.map(lab => `
         <div class="blog-post p-6 rounded-lg">
             <div class="flex justify-between items-start mb-3">
                 <h3 class="text-lg font-bold flex items-center gap-2">
@@ -79,18 +55,14 @@ async function renderLabsPage() {
     `).join('');
 }
 
-// ============================================
-// Render Open Source Page
-// ============================================
-
 async function renderOpenSourcePage() {
     const container = document.getElementById('opensource-container');
     if (!container) return;
 
-    const data = await loadJSON('data/opensource.json');
-    if (!data || !data.opensource) return;
+    const projects = window.PortfolioData ? await window.PortfolioData.loadOpenSource() : [];
+    if (!projects.length) return;
 
-    container.innerHTML = data.opensource.map(project => `
+    container.innerHTML = projects.map(project => `
         <div class="app-card p-6 rounded-lg">
             <div class="flex justify-between items-start mb-4">
                 <h3 class="text-lg font-bold">${project.name}</h3>
@@ -107,18 +79,14 @@ async function renderOpenSourcePage() {
     `).join('');
 }
 
-// ============================================
-// Render Writeups Page
-// ============================================
-
 async function renderWriteupsPage() {
     const container = document.getElementById('writeups-container');
     if (!container) return;
 
-    const data = await loadJSON('data/writeups.json');
-    if (!data || !data.writeups) return;
+    const writeups = window.PortfolioData ? await window.PortfolioData.loadWriteups() : [];
+    if (!writeups.length) return;
 
-    container.innerHTML = data.writeups.map(article => `
+    container.innerHTML = writeups.map(article => `
         <article class="blog-post p-6 rounded-lg">
             <div class="flex justify-between items-start mb-3">
                 <div>
@@ -140,18 +108,13 @@ async function renderWriteupsPage() {
     `).join('');
 }
 
-// ============================================
-// Render Status Page
-// ============================================
-
 async function renderStatusPage() {
     const container = document.getElementById('status-container');
     if (!container) return;
 
-    const data = await loadJSON('data/status.json');
-    if (!data || !data.status) return;
+    const status = window.PortfolioData ? await window.PortfolioData.loadStatus() : null;
+    if (!status) return;
 
-    const status = data.status;
     container.innerHTML = `
         <div class="bg-secondary/50 border border-accent/30 rounded-lg p-6">
             <div class="flex items-start justify-between mb-3">
@@ -186,12 +149,7 @@ async function renderStatusPage() {
     `;
 }
 
-// ============================================
-// Initialize Page Content
-// ============================================
-
 document.addEventListener('DOMContentLoaded', () => {
-    // Detect which page we're on and load appropriate content
     const pathname = window.location.pathname;
     
     if (pathname.includes('projects.html')) {

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1f2937",
+                        secondary: "#111827",
+                        accent: "#10b981",
+                        dark: "#030712",
+                        light: "#f3f4f6"
+                    },
+                    fontFamily: {
+                        'mono': ['JetBrains Mono', 'monospace'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="bg-dark text-light min-h-screen">
+    <header class="sticky top-0 z-50 bg-secondary/80 backdrop-blur-md border-b border-gray-800">
+        <nav class="container mx-auto px-4 py-4 max-w-6xl flex justify-between items-center">
+            <a href="../index.html" class="text-lg font-bold text-accent">
+                <i class="fas fa-shield-halved"></i> Admin
+            </a>
+            <div class="flex items-center gap-3">
+                <a href="../index.html" class="text-sm hover:text-accent transition">Site</a>
+                <button id="logout-btn" class="hidden text-sm px-3 py-2 rounded border border-gray-700 hover:border-accent hover:text-accent transition">
+                    Logout
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-10 max-w-6xl">
+        <section id="login-section" class="max-w-md mx-auto">
+            <div class="bg-primary/50 border border-gray-700 rounded-lg p-8">
+                <h1 class="text-3xl font-bold mb-2">Admin Login</h1>
+                <p class="text-gray-400 mb-6">Sign in to manage portfolio content.</p>
+                <form id="login-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm mb-2" for="email">Email</label>
+                        <input id="email" type="email" required class="w-full px-4 py-3 bg-secondary/50 border border-gray-700 rounded-lg focus:outline-none focus:border-accent">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-2" for="password">Password</label>
+                        <input id="password" type="password" required class="w-full px-4 py-3 bg-secondary/50 border border-gray-700 rounded-lg focus:outline-none focus:border-accent">
+                    </div>
+                    <button class="w-full px-4 py-3 bg-accent text-dark font-semibold rounded-lg">Sign in</button>
+                </form>
+                <p id="login-error" class="hidden mt-4 text-sm text-red-400"></p>
+                <p id="login-note" class="mt-4 text-xs text-gray-500">Supabase config must be set in <code>js/supabase-config.js</code>.</p>
+            </div>
+        </section>
+
+        <section id="dashboard" class="hidden space-y-8">
+            <!-- Tabs Navigation -->
+            <div class="border-b border-gray-800 mb-8">
+                <nav class="flex flex-wrap -mb-px gap-4 md:gap-6" aria-label="Tabs">
+                    <button data-tab="dashboard" class="tab-btn active border-b-2 border-accent py-4 px-1 text-sm font-semibold text-accent flex items-center gap-2 focus:outline-none">
+                        <i class="fas fa-chart-line"></i> Dashboard
+                    </button>
+                    <button data-tab="projects" class="tab-btn border-b-2 border-transparent py-4 px-1 text-sm font-semibold text-gray-400 hover:text-accent hover:border-accent flex items-center gap-2 focus:outline-none">
+                        <i class="fas fa-project-diagram"></i> Projects
+                    </button>
+                    <button data-tab="labs" class="tab-btn border-b-2 border-transparent py-4 px-1 text-sm font-semibold text-gray-400 hover:text-accent hover:border-accent flex items-center gap-2 focus:outline-none">
+                        <i class="fas fa-flask"></i> Labs
+                    </button>
+                    <button data-tab="opensource" class="tab-btn border-b-2 border-transparent py-4 px-1 text-sm font-semibold text-gray-400 hover:text-accent hover:border-accent flex items-center gap-2 focus:outline-none">
+                        <i class="fas fa-code-branch"></i> Open Source
+                    </button>
+                    <button data-tab="writeups" class="tab-btn border-b-2 border-transparent py-4 px-1 text-sm font-semibold text-gray-400 hover:text-accent hover:border-accent flex items-center gap-2 focus:outline-none">
+                        <i class="fas fa-pen-nib"></i> Writeups
+                    </button>
+                    <button data-tab="apps" class="tab-btn border-b-2 border-transparent py-4 px-1 text-sm font-semibold text-gray-400 hover:text-accent hover:border-accent flex items-center gap-2 focus:outline-none">
+                        <i class="fas fa-mobile-alt"></i> Apps
+                    </button>
+                </nav>
+            </div>
+
+            <!-- TAB CONTENT: DASHBOARD -->
+            <div id="tab-content-dashboard" class="tab-content space-y-8">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    <div class="bg-primary/50 border border-gray-700 rounded-lg p-5">
+                        <p class="text-gray-400 text-xs flex items-center gap-1"><i class="fas fa-project-diagram text-accent"></i> Projects</p>
+                        <p id="projects-count" class="text-2xl md:text-3xl font-bold mt-1">0</p>
+                    </div>
+                    <div class="bg-primary/50 border border-gray-700 rounded-lg p-5">
+                        <p class="text-gray-400 text-xs flex items-center gap-1"><i class="fas fa-flask text-accent"></i> Labs</p>
+                        <p id="labs-count" class="text-2xl md:text-3xl font-bold mt-1">0</p>
+                    </div>
+                    <div class="bg-primary/50 border border-gray-700 rounded-lg p-5">
+                        <p class="text-gray-400 text-xs flex items-center gap-1"><i class="fas fa-code-branch text-accent"></i> Open Source</p>
+                        <p id="opensource-count" class="text-2xl md:text-3xl font-bold mt-1">0</p>
+                    </div>
+                    <div class="bg-primary/50 border border-gray-700 rounded-lg p-5">
+                        <p class="text-gray-400 text-xs flex items-center gap-1"><i class="fas fa-pen-nib text-accent"></i> Writeups</p>
+                        <p id="writeups-count" class="text-2xl md:text-3xl font-bold mt-1">0</p>
+                    </div>
+                    <div class="bg-primary/50 border border-gray-700 rounded-lg p-5">
+                        <p class="text-gray-400 text-xs flex items-center gap-1"><i class="fas fa-mobile-alt text-accent"></i> Apps</p>
+                        <p id="apps-count" class="text-2xl md:text-3xl font-bold mt-1">0</p>
+                    </div>
+                    <div class="bg-primary/50 border border-gray-700 rounded-lg p-5">
+                        <p class="text-gray-400 text-xs flex items-center gap-1"><i class="fas fa-users text-accent"></i> Signups</p>
+                        <p id="signups-count" class="text-2xl md:text-3xl font-bold mt-1">0</p>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- Status Section -->
+                    <section class="bg-primary/50 border border-gray-700 rounded-lg p-6 h-fit">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-bold">Site Status</h2>
+                            <button id="save-status-btn" class="px-4 py-2 rounded bg-accent text-dark font-semibold text-sm">Save Status</button>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1" for="status-current-title">Current Status Title</label>
+                                <input id="status-current-title" placeholder="e.g. Currently Working On" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1" for="status-current-description">Current Status Description</label>
+                                <textarea id="status-current-description" rows="3" placeholder="Describe current work..." class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1" for="status-next-title">Next Up Title</label>
+                                <input id="status-next-title" placeholder="e.g. Up Next" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1" for="status-next-description">Next Up Description</label>
+                                <textarea id="status-next-description" rows="3" placeholder="Describe next plans..." class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1" for="status-updates">Recent Updates (JSON Array)</label>
+                                <textarea id="status-updates" rows="5" placeholder='[{"project": "My App", "update": "Created v1.0", "date": "2026-06-14"}]' class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg font-mono text-xs text-light focus:outline-none focus:border-accent"></textarea>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Beta Signups Section -->
+                    <section class="bg-primary/50 border border-gray-700 rounded-lg p-6 h-fit">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-bold">Beta Signups</h2>
+                            <button id="refresh-signups-btn" class="px-3 py-1.5 rounded border border-gray-700 hover:border-accent hover:text-accent transition text-sm">
+                                <i class="fas fa-rotate mr-1"></i> Refresh
+                            </button>
+                        </div>
+                        <div id="signups-list" class="space-y-3"></div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- TAB CONTENT: PROJECTS -->
+            <div id="tab-content-projects" class="tab-content hidden space-y-6">
+                <section class="bg-primary/50 border border-gray-700 rounded-lg p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold">Manage Projects</h2>
+                        <button id="new-project-btn" class="px-4 py-2 rounded bg-accent text-dark font-semibold text-sm">
+                            <i class="fas fa-plus mr-1"></i> New Project
+                        </button>
+                    </div>
+                    <form id="project-form" class="grid md:grid-cols-2 gap-4 mb-6">
+                        <input type="hidden" id="project-id">
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="project-name">Project Name</label>
+                            <input id="project-name" required placeholder="Resume Checker AI" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="project-category">Category</label>
+                            <input id="project-category" required placeholder="Web App / Mobile App / CLI" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="project-icon">FontAwesome Icon Class</label>
+                            <input id="project-icon" placeholder="fas fa-globe" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="project-sort">Sort Order</label>
+                            <input id="project-sort" type="number" placeholder="0" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="project-live">Live Demo URL</label>
+                            <input id="project-live" placeholder="https://..." class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="project-github">GitHub Repository URL</label>
+                            <input id="project-github" placeholder="https://github.com/..." class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs text-gray-400 mb-1" for="project-tags">Tags (Comma-separated)</label>
+                            <input id="project-tags" placeholder="React, Node.js, PostgreSQL" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs text-gray-400 mb-1" for="project-description">Project Description</label>
+                            <textarea id="project-description" rows="4" placeholder="Brief details about the project..." class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent"></textarea>
+                        </div>
+                        <div class="md:col-span-2 flex gap-3 mt-2">
+                            <button type="submit" class="px-5 py-2.5 bg-accent text-dark font-semibold rounded-lg text-sm hover:bg-opacity-90 transition">Save Project</button>
+                            <button id="project-reset" type="button" class="px-5 py-2.5 border border-gray-700 rounded-lg text-sm hover:border-gray-500 transition">Reset / Cancel</button>
+                        </div>
+                    </form>
+                    <div id="projects-list" class="space-y-3 mt-8 pt-8 border-t border-gray-800"></div>
+                </section>
+            </div>
+
+            <!-- TAB CONTENT: LABS -->
+            <div id="tab-content-labs" class="tab-content hidden space-y-6">
+                <section class="bg-primary/50 border border-gray-700 rounded-lg p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold">Manage Labs & Experiments</h2>
+                        <button id="new-lab-btn" class="px-4 py-2 rounded bg-accent text-dark font-semibold text-sm">
+                            <i class="fas fa-plus mr-1"></i> New Lab
+                        </button>
+                    </div>
+                    <form id="lab-form" class="grid md:grid-cols-2 gap-4 mb-6">
+                        <input type="hidden" id="lab-id">
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="lab-title">Lab Title</label>
+                            <input id="lab-title" required placeholder="Local AI Project" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="lab-status">Status</label>
+                            <select id="lab-status" required class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                                <option value="active">Active</option>
+                                <option value="in_progress">In Progress</option>
+                                <option value="planned">Planned</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="lab-icon">FontAwesome Icon Class</label>
+                            <input id="lab-icon" placeholder="fas fa-flask" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="lab-sort">Sort Order</label>
+                            <input id="lab-sort" type="number" placeholder="0" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs text-gray-400 mb-1" for="lab-tags">Tags (Comma-separated)</label>
+                            <input id="lab-tags" placeholder="#llm, #local-deployment, #ollama" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs text-gray-400 mb-1" for="lab-description">Lab Description</label>
+                            <textarea id="lab-description" rows="4" placeholder="Brief details about the experiment..." class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent"></textarea>
+                        </div>
+                        <div class="md:col-span-2 flex gap-3 mt-2">
+                            <button type="submit" class="px-5 py-2.5 bg-accent text-dark font-semibold rounded-lg text-sm hover:bg-opacity-90 transition">Save Lab</button>
+                            <button id="lab-reset" type="button" class="px-5 py-2.5 border border-gray-700 rounded-lg text-sm hover:border-gray-500 transition">Reset / Cancel</button>
+                        </div>
+                    </form>
+                    <div id="labs-list" class="space-y-3 mt-8 pt-8 border-t border-gray-800"></div>
+                </section>
+            </div>
+
+            <!-- TAB CONTENT: OPEN SOURCE -->
+            <div id="tab-content-opensource" class="tab-content hidden space-y-6">
+                <section class="bg-primary/50 border border-gray-700 rounded-lg p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold">Manage Open Source Projects</h2>
+                        <button id="new-opensource-btn" class="px-4 py-2 rounded bg-accent text-dark font-semibold text-sm">
+                            <i class="fas fa-plus mr-1"></i> New Project
+                        </button>
+                    </div>
+                    <form id="opensource-form" class="grid md:grid-cols-2 gap-4 mb-6">
+                        <input type="hidden" id="opensource-id">
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="opensource-name">Project Name</label>
+                            <input id="opensource-name" required placeholder="Useful Library of AI prompts" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="opensource-language">Language / Type</label>
+                            <input id="opensource-language" required placeholder="Python / Markdown / Bookmark" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="opensource-stars">Stars</label>
+                            <input id="opensource-stars" placeholder="e.g. 795 (numbers only)" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="opensource-sort">Sort Order</label>
+                            <input id="opensource-sort" type="number" placeholder="0" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs text-gray-400 mb-1" for="opensource-github">GitHub URL</label>
+                            <input id="opensource-github" required placeholder="https://github.com/..." class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs text-gray-400 mb-1" for="opensource-description">Project Description</label>
+                            <textarea id="opensource-description" rows="4" placeholder="Brief details about your contribution..." class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent"></textarea>
+                        </div>
+                        <div class="md:col-span-2 flex gap-3 mt-2">
+                            <button type="submit" class="px-5 py-2.5 bg-accent text-dark font-semibold rounded-lg text-sm hover:bg-opacity-90 transition">Save Open Source</button>
+                            <button id="opensource-reset" type="button" class="px-5 py-2.5 border border-gray-700 rounded-lg text-sm hover:border-gray-500 transition">Reset / Cancel</button>
+                        </div>
+                    </form>
+                    <div id="opensource-list" class="space-y-3 mt-8 pt-8 border-t border-gray-800"></div>
+                </section>
+            </div>
+
+            <!-- TAB CONTENT: WRITEUPS -->
+            <div id="tab-content-writeups" class="tab-content hidden space-y-6">
+                <section class="bg-primary/50 border border-gray-700 rounded-lg p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold">Manage Writeups & Articles</h2>
+                        <button id="new-writeup-btn" class="px-4 py-2 rounded bg-accent text-dark font-semibold text-sm">
+                            <i class="fas fa-plus mr-1"></i> New Writeup
+                        </button>
+                    </div>
+                    <form id="writeup-form" class="grid md:grid-cols-2 gap-4 mb-6">
+                        <input type="hidden" id="writeup-id">
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="writeup-title">Title</label>
+                            <input id="writeup-title" required placeholder="Setting Up Local Kubernetes" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="writeup-date">Publish Date</label>
+                            <input id="writeup-date" type="date" required class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="writeup-read-time">Read Time (minutes)</label>
+                            <input id="writeup-read-time" type="number" placeholder="5" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="writeup-link">Article Link (relative/absolute)</label>
+                            <input id="writeup-link" placeholder="e.g. # or writeups/my-post.html" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs text-gray-400 mb-1" for="writeup-tags">Tags (Comma-separated)</label>
+                            <input id="writeup-tags" placeholder="#kubernetes, #tutorial, #infrastructure" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs text-gray-400 mb-1" for="writeup-summary">Summary</label>
+                            <textarea id="writeup-summary" rows="4" placeholder="Brief summary of the article..." class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent"></textarea>
+                        </div>
+                        <div class="md:col-span-2 flex gap-3 mt-2">
+                            <button type="submit" class="px-5 py-2.5 bg-accent text-dark font-semibold rounded-lg text-sm hover:bg-opacity-90 transition">Save Writeup</button>
+                            <button id="writeup-reset" type="button" class="px-5 py-2.5 border border-gray-700 rounded-lg text-sm hover:border-gray-500 transition">Reset / Cancel</button>
+                        </div>
+                    </form>
+                    <div id="writeups-list" class="space-y-3 mt-8 pt-8 border-t border-gray-800"></div>
+                </section>
+            </div>
+
+            <!-- TAB CONTENT: APPS -->
+            <div id="tab-content-apps" class="tab-content hidden space-y-6">
+                <section class="bg-primary/50 border border-gray-700 rounded-lg p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold">Manage Apps (Beta Selection)</h2>
+                        <button id="new-app-btn" class="px-4 py-2 rounded bg-accent text-dark font-semibold text-sm">
+                            <i class="fas fa-plus mr-1"></i> New App
+                        </button>
+                    </div>
+                    <form id="app-form" class="grid md:grid-cols-2 gap-4 mb-6">
+                        <input type="hidden" id="app-id">
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1" for="app-name">App Name</label>
+                            <input id="app-name" required placeholder="StringDex Go" class="w-full px-4 py-2.5 bg-secondary/50 border border-gray-700 rounded-lg text-sm text-light focus:outline-none focus:border-accent">
+                        </div>
+                        <div class="md:col-span-2 flex gap-3 mt-2">
+                            <button type="submit" class="px-5 py-2.5 bg-accent text-dark font-semibold rounded-lg text-sm hover:bg-opacity-90 transition">Save App</button>
+                            <button id="app-reset" type="button" class="px-5 py-2.5 border border-gray-700 rounded-lg text-sm hover:border-gray-500 transition">Reset / Cancel</button>
+                        </div>
+                    </form>
+                    <div id="apps-list" class="space-y-3 mt-8 pt-8 border-t border-gray-800"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/portfolio-data.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
